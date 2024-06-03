@@ -1,27 +1,27 @@
-import axios from "axios";
+import axios from 'axios';
+
+const API_URL = 'https://sonic-backend-mr12.onrender.com';
+const AUTH_TOKEN = process.env.REACT_APP_STRIPE_DEV_APP_KEY;
 
 const params = {
     headers: {
-        Authorization: "Bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+        Authorization: `Bearer ${AUTH_TOKEN}`,
     },
 };
 
 export const fetchDataFromApi = async (url) => {
     try {
-        const {data} = await axios.get(
-            process.env.REACT_APP_STRIPE_APP_DEV_URL + url,
-            params
-        );
+        const {data} = await axios.get(`${API_URL}${url}`, params);
         return data;
     } catch(err) {
-        console.error("Error fetching data:", err);
-        throw err; // Rethrow the error for the caller to handle
+        console.error(err);
+        return err;
     }
 };
 
 export const makePaymentRequest = axios.create({
-    baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
+    baseURL: API_URL,
     headers: {
-        Authorization: "Bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+        Authorization: `Bearer ${AUTH_TOKEN}`,
     },
 });
