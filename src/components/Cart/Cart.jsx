@@ -18,14 +18,25 @@ const Cart = () => {
     const handlePayment = async () => {
         try {
             const stripe = await stripePromise;
+
+            if(!stripe) {
+                console.error("Stripe failed to load");
+                return;
+            }
+
             const res = await makePaymentRequest.post("/api/orders", {
                 products: cartItems,
-            }, {});
-            await stripe.redirectToCheckout({
-                sessionId: res.data.stripeSession.id,
             });
+
+            if(res.data && res.data.stripeSession) {
+                await stripe.redirectToCheckout({
+                    sessionId: res.data.stripeSession.id,
+                });
+            } else {
+                console.error("Stripe session not returned from API");
+            }
         } catch(err) {
-            console.log(err);
+            console.error("Payment request error:", err);
         }
     };
 
