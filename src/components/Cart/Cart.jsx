@@ -29,9 +29,16 @@ const Cart = () => {
             });
 
             if(res.data && res.data.stripeSession) {
-                await stripe.redirectToCheckout({
-                    sessionId: res.data.stripeSession.id,
+                const {id} = res.data.stripeSession;
+                console.log("Stripe Session ID:", id);
+
+                const {error} = await stripe.redirectToCheckout({
+                    sessionId: id,
                 });
+
+                if(error) {
+                    console.error("Stripe Checkout Error:", error);
+                }
             } else {
                 console.error("Stripe session not returned from API");
             }
