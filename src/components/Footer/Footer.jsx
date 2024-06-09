@@ -35,7 +35,7 @@ const Footer = () => {
                     <div className="c-item">
                         <FaEnvelope />
                         <div className="text">
-                            Email: <a href="mailto:chandreks123@gmail.com">chandreks123@gmail.com</a>
+                            Email: <a href="mailto:sonicsensations@123.com">sonicsensations@123.com</a>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@ const Footer = () => {
             <div className="bottom-bar">
                 <div className="bottom-bar-content">
                     <span className="text">
-                        SONIC SENSATIONS 2023 CREATED BY CHANDREK BISHT. PREMIUM E-COMMERCE
+                        SONIC SENSATIONS 2023 CREATED BY HARSHIT RAWAT. PREMIUM E-COMMERCE
                         SOLUTIONS.
                     </span>
                     <img src={Payment} alt="payment" />
